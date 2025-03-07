@@ -13,7 +13,7 @@ emacspy.c: emacspy.pyx
 ifeq ($(OS_NAME), Linux)
 emacspy.so: emacspy.c stub.c
 	gcc -fPIC -g -DCYTHON_FAST_THREAD_STATE=0 -DCYTHON_PEP489_MULTI_PHASE_INIT=0 emacspy.c stub.c -o emacspy.so -Wl,--no-undefined -shared \
-	$(shell python3-config --cflags --libs --embed)
+	$(shell python3-config --cflags --ldflags --libs --embed)
 else
 ifeq ($(OS_NAME), Darwin)
 emacspy.dylib: emacspy.c stub.c
